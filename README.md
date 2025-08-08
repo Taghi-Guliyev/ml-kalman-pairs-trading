@@ -127,4 +127,94 @@ graph TD
     D2 --> H
     G --> H
 
+```
+
+## ⚡ Quick Start
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/Taghi-Guliyev/ml-kalman-pairs-trading.git
+cd ml-kalman-pairs-trading
+```
+
+2. Install dependencies
+
+```bash
+python "Data Preparation and Filtering/install_libraries.py"
+```
+
+3. Run the pipeline in sequence
+
+   Data Preparation
+
+Fetch and save S&P 500 and VIX data
+```bash
+python "Data Preparation and Filtering/data.py"
+```
+
+   Run cointegration tests and filter pairs
+```bash
+python "Data Preparation and Filtering/cointegration.py"
+```
+
+   Calculate half-life of mean reversion for pairs
+```bash
+python "Data Preparation and Filtering/half-life.py"
+```
+Static Strategy
+
+   Generate z-scores for all candidate pairs (static hedge ratio)
+```bash
+python Static/static.py
+```
+
+   Backtest the static hedge ratio strategy
+```bash
+python Static/static-backtest.py
+```
+
+Kalman Strategy
+
+   Generate z-scores for all candidate pairs (dynamic hedge ratio via Kalman filter)
+```bash
+python Kalman/kalman.py
+```
+
+   Backtest the Kalman filter strategy
+```bash
+python Kalman/kalman-backtest.py
+```
+
+ML + Kalman Strategy
+
+   Generate z-scores and ML features for all candidate pairs
+```bash
+python "ML+Kalman/ml-kalman-data-collection.py"
+```
+
+   Backtest Kalman strategy and save trade logs with features
+```bash
+python "ML+Kalman/ml-backtest.py"
+```
+
+   Train Random Forest model on historical trade outcomes
+```bash
+python "ML+Kalman/rf_model.py"
+```
+
+   Forward test without ML filtering to verify data alignment
+```bash
+python "ML+Kalman/ml-forward-test.py"
+```
+
+   Backtest with Kalman + ML model to filter trades
+```bash
+python "ML+Kalman/ml-forward-backtest.py"
+```
+
+
+
+
+
 
